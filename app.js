@@ -3,10 +3,10 @@ const app = express();
 const port = 3000;
 
 const sanitizeName = (req, res, next) => {
-    let sanitized = req.body?.name.trim().toUpperCase();
-    req.body.name = sanitized === '' ? 'ANONYMOUS' : sanitized;
+    req.body = req.body || {};
+    req.body.name = (req.body.name || '').trim().toUpperCase() || 'ANONYMOUS';
     next();
-}
+};
 
 app.use(express.json());
 app.use(sanitizeName);
