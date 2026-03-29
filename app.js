@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 const sanitizeName = (req, res, next) => {
-    req.body.name = req.body?.name.trim().toUpperCase();
+    req.body.name = req.body?.name.trim().toUpperCase() || 'UNKNOWN';
     next();
 }
 
